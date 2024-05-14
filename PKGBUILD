@@ -21,11 +21,14 @@ optdepends=(
   'curl: An URL retrieval utility and library'
   'ttf-wps-fonts: Symbol fonts required by wps-office')
 source=(
-  "https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_amd64.deb"
   '0001-fix-wps-python-parse.patch')
-sha512sums=(
-  'e8d424629cbbf77cd7165ff955e2a95ebbb2607811f3ddf50fa708239c03237337936b714b3322731223d050a3b4f22794ac270d197fb57fd97c3d5397da84a4'
-  'bf9a86888130f38abee292391e834f31d8527769a5726c897c7443b1fe3861f01c31574950d72153ec0cd0aecd9e3626e670071b4b47b2669da823742e685862')
+source_x86_64=(
+  "https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_amd64.deb")
+source_aarch64=(
+  "https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_arm64.deb")
+sha256sums=('4cdee1973f15666d64c7e4e8403c37a1702997e7905135a402d91d9932066dd6')
+sha256sums_x86_64=('adf958d5cc0f99890991cb77e703de4b8c5f44944a9647ab813591618b8ffd01')
+sha256sums_aarch64=('046c502366b888b9216e48346f02b16007a95b02cfcd448c51f160c19d9a4686')
 
 package(){
   tar -xJ -f data.tar.xz -C ${pkgdir}
@@ -44,3 +47,4 @@ package(){
   # fix python
   patch -p1 -d ${pkgdir} < 0001-fix-wps-python-parse.patch
 }
+

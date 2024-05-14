@@ -31,9 +31,9 @@ pkgbase = wps-office-365
 	optdepends = ttf-wps-fonts: Symbol fonts required by wps-office
 	provides = wps-office
 	conflicts = wps-office
-	source = https://ks3.wpsplus.wpscdn.cn/img/wps-office_12.8.2.15283.AK.preload.sw_amd64.deb
 	source = 0001-fix-wps-python-parse.patch
-	sha512sums = e8d424629cbbf77cd7165ff955e2a95ebbb2607811f3ddf50fa708239c03237337936b714b3322731223d050a3b4f22794ac270d197fb57fd97c3d5397da84a4
-	sha512sums = bf9a86888130f38abee292391e834f31d8527769a5726c897c7443b1fe3861f01c31574950d72153ec0cd0aecd9e3626e670071b4b47b2669da823742e685862
+	sha256sums = 4cdee1973f15666d64c7e4e8403c37a1702997e7905135a402d91d9932066dd6
+	source_x86_64 = https://ks3.wpsplus.wpscdn.cn/img/wps-office_12.8.2.15283.AK.preload.sw_amd64.deb
+	sha256sums_x86_64 = adf958d5cc0f99890991cb77e703de4b8c5f44944a9647ab813591618b8ffd01
 
 pkgname = wps-office-365
