@@ -28,7 +28,7 @@ sha512sums=(
   'bf9a86888130f38abee292391e834f31d8527769a5726c897c7443b1fe3861f01c31574950d72153ec0cd0aecd9e3626e670071b4b47b2669da823742e685862')
 
 package(){
-	tar -xJ -f data.tar.xz -C ${pkgdir}
+  tar -xJ -f data.tar.xz -C ${pkgdir}
 
   # remove file
   rm -r ${pkgdir}/etc/xdg/autostart
