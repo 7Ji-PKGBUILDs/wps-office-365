@@ -1,7 +1,7 @@
 # Maintainer: Jove Yu <yushijun110 [at] gmail.com>
 pkgname=wps-office-365
 pkgver=12.8.2.15283
-pkgrel=1
+pkgrel=2
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64')
 url="https://365.wps.cn/"
@@ -31,7 +31,7 @@ sha256sums_x86_64=('adf958d5cc0f99890991cb77e703de4b8c5f44944a9647ab813591618b8f
 sha256sums_aarch64=('046c502366b888b9216e48346f02b16007a95b02cfcd448c51f160c19d9a4686')
 
 package(){
-  tar -xJ -f data.tar.xz -C ${pkgdir}
+  tar --no-same-owner -xJ -f data.tar.xz -C ${pkgdir}
 
   # remove file
   rm -r ${pkgdir}/etc/xdg/autostart
