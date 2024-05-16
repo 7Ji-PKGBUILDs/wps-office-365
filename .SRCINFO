@@ -4,6 +4,7 @@ pkgbase = wps-office-365
 	pkgrel = 2
 	url = https://365.wps.cn/
 	arch = x86_64
+	arch = aarch64
 	license = LicenseRef-WPS-EULA
 	depends = fontconfig
 	depends = xorg-mkfontdir
@@ -35,5 +36,7 @@ pkgbase = wps-office-365
 	sha256sums = 4cdee1973f15666d64c7e4e8403c37a1702997e7905135a402d91d9932066dd6
 	source_x86_64 = https://ks3.wpsplus.wpscdn.cn/img/wps-office_12.8.2.15283.AK.preload.sw_amd64.deb
 	sha256sums_x86_64 = adf958d5cc0f99890991cb77e703de4b8c5f44944a9647ab813591618b8ffd01
+	source_aarch64 = https://ks3.wpsplus.wpscdn.cn/img/wps-office_12.8.2.15283.AK.preload.sw_arm64.deb
+	sha256sums_aarch64 = 046c502366b888b9216e48346f02b16007a95b02cfcd448c51f160c19d9a4686
 
 pkgname = wps-office-365
