@@ -1,25 +1,22 @@
 # Maintainer: Jove Yu <yushijun110 [at] gmail.com>
 pkgname=wps-office-365
 pkgver=12.8.2.15283
-pkgrel=3
+pkgrel=4
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
 license=('LicenseRef-WPS-EULA')
 conflicts=('wps-office')
 provides=('wps-office')
+makedepends=(
+  'tar' 'patchelf')
 depends=(
   'fontconfig' 'xorg-mkfontdir' 'libxrender' 'desktop-file-utils' 
   'shared-mime-info' 'xdg-utils' 'glu' 'openssl-1.1' 'sdl2' 
   'libpulse' 'hicolor-icon-theme' 'libxss' 'sqlite' 'libtool' 
-  'libxslt' 'qt5-base' 'libjpeg-turbo' 'libpng12')
+  'libxslt' 'qt5-base' 'libjpeg-turbo' 'libpng12' 'freetype2')
 optdepends=(
-  'libtiff5: Provide libtiff.so.5 for wpspdf working'
-  'cups: for printing support'
-  'libjpeg-turbo: JPEG image codec support'
-  'pango: for complex (right-to-left) text support'
-  'curl: An URL retrieval utility and library'
-  'ttf-wps-fonts: Symbol fonts required by wps-office')
+  'cups: for printing support')
 source=(
   '0001-fix-wps-python-parse.patch')
 source_x86_64=(
@@ -35,14 +32,19 @@ package(){
 
   # remove file
   rm -r ${pkgdir}/etc/xdg/autostart
-  rm -r ${pkgdir}/etc/logrotate.d
-  rm -r ${pkgdir}/etc/cron.d
+  rm -r ${pkgdir}/etc/{logrotate.d,cron.d}
+  rm    ${pkgdir}/usr/bin/{wps_uninstall.sh,wps_xterm}
+  rm    ${pkgdir}/usr/share/applications/wps-office-uninstall.desktop
 
   # use system lib
   rm ${pkgdir}/opt/kingsoft/wps-office/office6/libstdc++.so*
   rm ${pkgdir}/opt/kingsoft/wps-office/office6/libjpeg.so*
   rm ${pkgdir}/opt/kingsoft/wps-office/office6/libfreetype.so*
   [[ "$CARCH" = "aarch64" ]] && rm ${pkgdir}/opt/kingsoft/wps-office/office6/addons/cef/libm.so*
+
+  # fix libtiff.so.5 deps
+  patchelf --replace-needed libtiff.so.5 libtiff.so.6 ${pkgdir}/opt/kingsoft/wps-office/office6/libqpdfpaint.so
+  patchelf --replace-needed libtiff.so.5 libtiff.so.6 ${pkgdir}/opt/kingsoft/wps-office/office6/libpdfmain.so
 
   # fix python
   patch -p1 -d ${pkgdir} < 0001-fix-wps-python-parse.patch
