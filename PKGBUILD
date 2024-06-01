@@ -11,10 +11,9 @@ provides=('wps-office')
 makedepends=(
   'tar' 'patchelf')
 depends=(
-  'fontconfig' 'xorg-mkfontdir' 'libxrender' 'desktop-file-utils' 
-  'shared-mime-info' 'xdg-utils' 'glu' 'openssl-1.1' 'sdl2' 
-  'libpulse' 'hicolor-icon-theme' 'libxss' 'sqlite' 'libtool' 
-  'libxslt' 'qt5-base' 'libjpeg-turbo' 'libpng12' 'freetype2')
+  'fontconfig' 'libxrender' 'xdg-utils' 'glu' 
+  'libpulse' 'libxss' 'sqlite' 'libtool' 
+  'libxslt' 'libjpeg-turbo' 'libpng12' 'freetype2')
 optdepends=(
   'cups: for printing support')
 source=(
