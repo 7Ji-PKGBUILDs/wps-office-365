@@ -50,5 +50,8 @@ package(){
 
   # fix python
   patch -p1 -d ${pkgdir} < 0001-fix-wps-python-parse.patch
+
+  # fix fcitx
+  # sed -i '2i export QT_IM_MODULE=fcitx' ${pkgdir}/usr/bin/{wps,wpp,et,wpspdf}
 }
 
