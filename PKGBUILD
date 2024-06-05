@@ -1,7 +1,7 @@
 # Maintainer: Jove Yu <yushijun110 [at] gmail.com>
 pkgname=wps-office-365
-pkgver=12.8.2.15283
-pkgrel=4
+pkgver=12.8.2.16969
+pkgrel=1
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -19,12 +19,15 @@ optdepends=(
 source=(
   '0001-fix-wps-python-parse.patch')
 source_x86_64=(
-  "https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_amd64.deb")
+  #"https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_amd64.deb")
+  "https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_amd64.deb")
 source_aarch64=(
-  "https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_arm64.deb")
+  #"https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_arm64.deb")
+  "https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_arm64.deb")
+
 sha256sums=('8325d6176ef26f14b5d560a3ec5d103cbbc0c9488efaa0570d4f0ddcd1fa1cd9')
-sha256sums_x86_64=('adf958d5cc0f99890991cb77e703de4b8c5f44944a9647ab813591618b8ffd01')
-sha256sums_aarch64=('046c502366b888b9216e48346f02b16007a95b02cfcd448c51f160c19d9a4686')
+sha256sums_x86_64=('cee58dfd867edfbb0577533354eee0c195dbe862fb55832284adb9c71c6fa6cf')
+sha256sums_aarch64=('5a63eaddd4737d650d47025c90a88444c87b11e6dafee0c10c7271d0dd68cc44')
 
 package(){
   tar --no-same-owner -xJ -f data.tar.xz -C ${pkgdir}
