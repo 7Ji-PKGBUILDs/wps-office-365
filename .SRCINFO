@@ -1,7 +1,7 @@
 pkgbase = wps-office-365
 	pkgdesc = WPS Office, is an office productivity suite.
 	pkgver = 12.8.2.16969
-	pkgrel = 4
+	pkgrel = 5
 	url = https://365.wps.cn/
 	arch = x86_64
 	arch = aarch64
@@ -26,8 +26,6 @@ pkgbase = wps-office-365
 	options = !strip
 	options = !zipman
 	options = !debug
-	source = 0001-fix-wps-python-parse.patch
-	sha256sums = 8325d6176ef26f14b5d560a3ec5d103cbbc0c9488efaa0570d4f0ddcd1fa1cd9
 	source_x86_64 = https://ks3.wpsplus.wpscdn.cn/img/WPS365_office12.8.2.16969_integration_xiezuo4.23.0_amd64.deb
 	sha256sums_x86_64 = cee58dfd867edfbb0577533354eee0c195dbe862fb55832284adb9c71c6fa6cf
 	source_aarch64 = https://ks3.wpsplus.wpscdn.cn/img/WPS365_office12.8.2.16969_integration_xiezuo4.23.0_arm64.deb
@@ -40,3 +38,5 @@ pkgname = wps-office-365
 pkgname = wps-office-365-xiezuo
 
 pkgname = wps-office-365-fonts
+	provides = wps-office-fonts
+	conflicts = wps-office-fonts

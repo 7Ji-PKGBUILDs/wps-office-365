@@ -3,7 +3,7 @@
 pkgbase=wps-office-365
 pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
 pkgver=12.8.2.16969
-pkgrel=4
+pkgrel=5
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -17,27 +17,20 @@ depends=(
 optdepends=(
   'cups: for printing support')
 options=(!strip !zipman !debug)
-source=(
-  '0001-fix-wps-python-parse.patch')
-_ver_xiezuo='4.23.0'
-_deb_prefix="WPS365_office${pkgver}_integration_xiezuo${_ver_xiezuo}"
-_deb_x86_64="${_deb_prefix}_amd64.deb"
-_deb_aarch64="${_deb_prefix}_arm64.deb"
-_deb_parent='https://ks3.wpsplus.wpscdn.cn/img/'
-source_x86_64=("${_deb_parent}${_deb_x86_64}")
-source_aarch64=("${_deb_parent}${_deb_aarch64}")
-noextract=("${_deb_x86_64}" "${_deb_aarch64}")
-sha256sums=('8325d6176ef26f14b5d560a3ec5d103cbbc0c9488efaa0570d4f0ddcd1fa1cd9')
+_deb_prefix="https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_"
+source_x86_64=("${_deb_prefix}amd64.deb")
+source_aarch64=("${_deb_prefix}arm64.deb")
+noextract=("${source_x86_64[0]##*/}" "${source_aarch64[0]##*/}")
 sha256sums_x86_64=('cee58dfd867edfbb0577533354eee0c195dbe862fb55832284adb9c71c6fa6cf')
 sha256sums_aarch64=('5a63eaddd4737d650d47025c90a88444c87b11e6dafee0c10c7271d0dd68cc44')
 
 prepare() {
   case "${CARCH}" in
     x86_64)
-      local _deb="${_deb_x86_64}"
+      local _deb="${noextract[0]}"
       ;;
     aarch64)
-      local _deb="${_deb_aarch64}"
+      local _deb="${noextract[1]}"
       ;;
   esac
   bsdtar -xOf "${_deb}" data.tar.xz |
@@ -52,14 +45,15 @@ package_wps-office-365(){
   conflicts=('wps-office')
   provides=('wps-office')
 
-  _install ./opt/kingsoft
-  _install ./usr --exclude '*xiezuo*' --exclude './usr/share/fonts'
-
-  # fix python
-  patch -p1 -d "${pkgdir}" < 0001-fix-wps-python-parse.patch
+  _install --exclude './usr/*xiezuo*' --exclude './usr/share/fonts' \
+    ./opt/kingsoft ./usr ./etc/xdg/menus/applications-merged/wps-office.menu 
 
   # to save typing pkgdir 
   cd "${pkgdir}"
+
+  # naughty path
+  # mv etc/xdg/menus/{applications-merged/,}wps-office.menu 
+  # rm -rf etc/xdg/menus/applications-merged
 
   # remove file
   rm -f usr/bin/{wps_uninstall.sh,wps_xterm} \
@@ -73,14 +67,23 @@ package_wps-office-365(){
   patchelf --replace-needed libtiff.so.5 libtiff.so.6 \
     opt/kingsoft/wps-office/office6/lib{qpdfpaint,pdfmain}.so
 
-  # fix fcitx
-  # sed -i '2i export QT_IM_MODULE=fcitx' ${pkgdir}/usr/bin/{wps,wpp,et,wpspdf}
+  # fix python2 call
+  sed -i "s/python -c 'import sys, urllib; print urllib\.unquote(sys\.argv\[1\])'/\
+python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/" usr/bin/wps
+
+  # fix desktop icons group
+  local _application
+  for _application in usr/share/applications/*; do
+    echo 'Categories=WPS Office' >> "${_application}"
+  done
 }
 
 package_wps-office-365-xiezuo(){
-  _install ./opt/xiezuo --wildcards './usr/*xiezuo*'
+  _install --wildcards ./opt/xiezuo './usr/*xiezuo*'
 }
 
 package_wps-office-365-fonts(){
+  conflicts=('wps-office-fonts')
+  provides=('wps-office-fonts')
   _install ./etc/fonts ./usr/share/fonts
 }
