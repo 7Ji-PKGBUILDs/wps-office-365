@@ -2,7 +2,7 @@
 pkgbase=wps-office-365
 pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
 pkgver=12.8.2.16969
-pkgrel=2
+pkgrel=3
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -30,6 +30,7 @@ sha256sums_aarch64=('5a63eaddd4737d650d47025c90a88444c87b11e6dafee0c10c7271d0dd6
 
 _install(){
   find "$@" -type f -exec install -Dm 755 "{}" "${pkgdir}/{}" \;
+  find "$@" -type l -exec cp -a "{}" "${pkgdir}/{}" \;
 }
 
 build(){
