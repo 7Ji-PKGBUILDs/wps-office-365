@@ -3,7 +3,7 @@
 pkgbase=wps-office-365
 pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
 pkgver=12.8.2.16969
-pkgrel=5
+pkgrel=6
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -46,14 +46,10 @@ package_wps-office-365(){
   provides=('wps-office')
 
   _install --exclude './usr/*xiezuo*' --exclude './usr/share/fonts' \
-    ./opt/kingsoft ./usr ./etc/xdg/menus/applications-merged/wps-office.menu 
+    ./opt/kingsoft ./usr ./etc/xdg/menus
 
   # to save typing pkgdir 
   cd "${pkgdir}"
-
-  # naughty path
-  # mv etc/xdg/menus/{applications-merged/,}wps-office.menu 
-  # rm -rf etc/xdg/menus/applications-merged
 
   # remove file
   rm -f usr/bin/{wps_uninstall.sh,wps_xterm} \
@@ -70,12 +66,6 @@ package_wps-office-365(){
   # fix python2 call
   sed -i "s/python -c 'import sys, urllib; print urllib\.unquote(sys\.argv\[1\])'/\
 python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/" usr/bin/wps
-
-  # fix desktop icons group
-  local _application
-  for _application in usr/share/applications/*; do
-    echo 'Categories=WPS Office' >> "${_application}"
-  done
 }
 
 package_wps-office-365-xiezuo(){
