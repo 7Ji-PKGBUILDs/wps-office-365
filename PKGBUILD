@@ -17,23 +17,17 @@ depends=(
 optdepends=(
   'cups: for printing support')
 options=(!strip !zipman !debug)
+_deb_stem="WPS365_office${pkgver}_integration_xiezuo4.23.0_"
 _deb_prefix="https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_"
 source_x86_64=("${_deb_prefix}amd64.deb")
 source_aarch64=("${_deb_prefix}arm64.deb")
-noextract=("${source_x86_64[0]##*/}" "${source_aarch64[0]##*/}")
+noextract=("${_deb_stem}"{amd,arm}64.deb)
 sha256sums_x86_64=('cee58dfd867edfbb0577533354eee0c195dbe862fb55832284adb9c71c6fa6cf')
 sha256sums_aarch64=('5a63eaddd4737d650d47025c90a88444c87b11e6dafee0c10c7271d0dd68cc44')
 
 prepare() {
-  case "${CARCH}" in
-    x86_64)
-      local _deb="${noextract[0]}"
-      ;;
-    aarch64)
-      local _deb="${noextract[1]}"
-      ;;
-  esac
-  bsdtar -xOf "${_deb}" data.tar.xz |
+  echo 'Caching data.tar...'
+  bsdtar -xOf *.deb data.tar.xz |
     xz -d > data.tar
 }
 
