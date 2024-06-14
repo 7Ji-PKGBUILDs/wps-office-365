@@ -3,7 +3,7 @@
 pkgbase=wps-office-365
 pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
 pkgver=12.8.2.16969
-pkgrel=7
+pkgrel=8
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -17,8 +17,10 @@ depends=(
 optdepends=(
   'cups: for printing support')
 options=(!strip !zipman !debug)
+source=('systemd-run-wrapper.sh')
 source_x86_64=("https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_amd64.deb")
 source_aarch64=("https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_arm64.deb")
+sha256sums=('47c39adc7f811228b0a15a5f0e674c515df791b8eb0c77ed4e5af911334b618c')
 sha256sums_x86_64=('cee58dfd867edfbb0577533354eee0c195dbe862fb55832284adb9c71c6fa6cf')
 sha256sums_aarch64=('5a63eaddd4737d650d47025c90a88444c87b11e6dafee0c10c7271d0dd68cc44')
 
@@ -58,6 +60,14 @@ python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/"
 
   # fix background processes
   sed -i '/gOptExt/s/#//g' usr/bin/{wps,et,wpp}
+
+  # wrap around binaries
+  mkdir usr/lib/wps-office-365
+  mv usr/bin/* usr/lib/wps-office-365/
+  for name in $(ls usr/lib/wps-office-365/); do
+    ln -s /usr/lib/wps-office-365/systemd-run-wrapper.sh usr/bin/"${name##*/}"
+  done
+  install -DTm755 "${srcdir}/systemd-run-wrapper.sh" usr/lib/wps-office-365/systemd-run-wrapper.sh
 }
 
 package_wps-office-365-xiezuo(){

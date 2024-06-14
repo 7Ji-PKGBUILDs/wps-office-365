@@ -1,7 +1,7 @@
 pkgbase = wps-office-365
 	pkgdesc = WPS Office, is an office productivity suite.
 	pkgver = 12.8.2.16969
-	pkgrel = 7
+	pkgrel = 8
 	url = https://365.wps.cn/
 	arch = x86_64
 	arch = aarch64
@@ -24,6 +24,8 @@ pkgbase = wps-office-365
 	options = !strip
 	options = !zipman
 	options = !debug
+	source = systemd-run-wrapper.sh
+	sha256sums = 47c39adc7f811228b0a15a5f0e674c515df791b8eb0c77ed4e5af911334b618c
 	source_x86_64 = https://ks3.wpsplus.wpscdn.cn/img/WPS365_office12.8.2.16969_integration_xiezuo4.23.0_amd64.deb
 	sha256sums_x86_64 = cee58dfd867edfbb0577533354eee0c195dbe862fb55832284adb9c71c6fa6cf
 	source_aarch64 = https://ks3.wpsplus.wpscdn.cn/img/WPS365_office12.8.2.16969_integration_xiezuo4.23.0_arm64.deb
