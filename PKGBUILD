@@ -3,7 +3,7 @@
 pkgbase=wps-office-365
 pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
 pkgver=12.8.2.16969
-pkgrel=9
+pkgrel=10
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -55,9 +55,6 @@ package_wps-office-365(){
   # fix python2 call
   sed -i "s/python -c 'import sys, urllib; print urllib\.unquote(sys\.argv\[1\])'/\
 python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/" usr/bin/wps
-
-  # fix background processes
-  sed -i '/gOptExt/s/#//g' usr/bin/{wps,et,wpp}
 }
 
 package_wps-office-365-xiezuo(){
