@@ -20,7 +20,7 @@ options=(!strip !zipman !debug)
 source=('systemd-run-wrapper.sh')
 source_x86_64=("https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_amd64.deb")
 source_aarch64=("https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_arm64.deb")
-sha256sums=('47c39adc7f811228b0a15a5f0e674c515df791b8eb0c77ed4e5af911334b618c')
+sha256sums=('b0927a95aa70b389e8c92fc37570b226032e5f3e7f7792bb6fde0b630375e24a')
 sha256sums_x86_64=('cee58dfd867edfbb0577533354eee0c195dbe862fb55832284adb9c71c6fa6cf')
 sha256sums_aarch64=('5a63eaddd4737d650d47025c90a88444c87b11e6dafee0c10c7271d0dd68cc44')
 
