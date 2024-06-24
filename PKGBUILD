@@ -15,6 +15,7 @@ depends=(
   'libpulse' 'libxss' 'sqlite' 'libtool' 
   'libxslt' 'libjpeg-turbo' 'libpng12' 'freetype2')
 optdepends=(
+  'wps-office-365-fonts: FZ TTF fonts provided by wps office 365'
   'cups: for printing support')
 options=(!strip !zipman !debug)
 source_x86_64=("https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_amd64.deb")

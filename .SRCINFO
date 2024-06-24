@@ -20,6 +20,7 @@ pkgbase = wps-office-365
 	depends = libjpeg-turbo
 	depends = libpng12
 	depends = freetype2
+	optdepends = wps-office-365-fonts: FZ TTF fonts provided by wps office 365
 	optdepends = cups: for printing support
 	options = !strip
 	options = !zipman
