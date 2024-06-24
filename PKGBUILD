@@ -3,7 +3,7 @@
 pkgbase=wps-office-365
 pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
 pkgver=12.8.2.16969
-pkgrel=10
+pkgrel=11
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -56,6 +56,14 @@ package_wps-office-365(){
   # fix python2 call
   sed -i "s/python -c 'import sys, urllib; print urllib\.unquote(sys\.argv\[1\])'/\
 python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/" usr/bin/wps
+
+  # fix template path
+  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/templates/WPS文字文档.wps|' \
+    usr/share/templates/wps-office-wps-template.desktop
+  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/templates/WPS表格工作表.et|' \
+    usr/share/templates/wps-office-et-template.desktop
+  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/templates/WPS演示文稿.dps|' \
+    usr/share/templates/wps-office-wpp-template.desktop
 }
 
 package_wps-office-365-xiezuo(){
