@@ -9,10 +9,10 @@ arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
 license=('LicenseRef-WPS-EULA')
 makedepends=(
-  'tar' 'patchelf')
+  'tar')
 depends=(
-  'fontconfig' 'libxrender' 'xdg-utils' 'glu' 
-  'libpulse' 'libxss' 'sqlite' 'libtool' 
+  'fontconfig' 'libxrender' 'xdg-utils' 'glu'
+  'libpulse' 'libxss' 'sqlite' 'libtool' 'libtiff'
   'libxslt' 'libjpeg-turbo' 'libpng12' 'freetype2')
 optdepends=(
   'wps-office-365-fonts: FZ TTF fonts provided by wps office 365'
@@ -50,8 +50,7 @@ package_wps-office-365(){
   [[ "$CARCH" = "aarch64" ]] && rm opt/kingsoft/wps-office/office6/addons/cef/libm.so*
 
   # fix libtiff.so.5 deps
-  patchelf --replace-needed libtiff.so.5 libtiff.so.6 \
-    opt/kingsoft/wps-office/office6/lib{qpdfpaint,pdfmain}.so
+  ln -s /usr/lib/libtiff.so.6 opt/kingsoft/wps-office/office6/libtiff.so.5
 
   # fix python2 call
   sed -i "s/python -c 'import sys, urllib; print urllib\.unquote(sys\.argv\[1\])'/\
