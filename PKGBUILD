@@ -2,8 +2,9 @@
 # Maintainer: Guoxin "7Ji" Pu <pugokushin@gmail.com>
 pkgbase=wps-office-365
 pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
-pkgver=12.8.2.16969
-pkgrel=11
+pkgver=12.8.2.17001
+_xiezuo='4.25.0'
+pkgrel=1
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -18,10 +19,10 @@ optdepends=(
   'wps-office-365-fonts: FZ TTF fonts provided by wps office 365'
   'cups: for printing support')
 options=(!strip !zipman !debug)
-source_x86_64=("https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_amd64.deb")
-source_aarch64=("https://ks3.wpsplus.wpscdn.cn/img/WPS365_office${pkgver}_integration_xiezuo4.23.0_arm64.deb")
-sha256sums_x86_64=('cee58dfd867edfbb0577533354eee0c195dbe862fb55832284adb9c71c6fa6cf')
-sha256sums_aarch64=('5a63eaddd4737d650d47025c90a88444c87b11e6dafee0c10c7271d0dd68cc44')
+source_x86_64=("https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw._integration_xiezuo${_xiezuo}_amd64.deb")
+source_aarch64=("https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw._integration_xiezuo${_xiezuo}_arm64.deb")
+sha256sums_x86_64=('071100a6603c38f8a36970b85afa8b22d963d3a47617a365c1c34a7f9ec44e27')
+sha256sums_aarch64=('df5b87ad07b9c965a83047fdd6599a95b77493f6b999c1b0d71bc2fea8fa4b01')
 
 prepare() {
   xz -df data.tar.xz
