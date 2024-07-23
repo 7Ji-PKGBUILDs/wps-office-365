@@ -65,7 +65,7 @@ python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/"
   sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/templates/WPS演示文稿.dps|' \
     usr/share/templates/wps-office-wpp-template.desktop
 
-  # fix xxx
+  # fix xxx Njk0QkYtWVVEQkctRUFSNjktQlBSR0ItQVRRWEgK
   sed -i 's|YUA..=NsbhfV4nLv_oZGENyLSVZA..|YUA..=WHfH10HHgeQrW2N48LfXrA..|' \
     opt/kingsoft/wps-office/office6/cfgs/oem.ini
   install -dm777 opt/kingsoft/.auth/
