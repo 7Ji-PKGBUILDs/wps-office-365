@@ -58,11 +58,11 @@ package_wps-office-365(){
 python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/" usr/bin/wps
 
   # fix template path
-  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/templates/WPS文字文档.wps|' \
+  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/office6/mui/zh_CN/templates/newfile.docx|' \
     usr/share/templates/wps-office-wps-template.desktop
-  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/templates/WPS表格工作表.et|' \
+  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/office6/mui/zh_CN/templates/newfile.xlsx|' \
     usr/share/templates/wps-office-et-template.desktop
-  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/templates/WPS演示文稿.dps|' \
+  sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/office6/mui/zh_CN/templates/newfile.pptx|' \
     usr/share/templates/wps-office-wpp-template.desktop
 
   # fix xxx Njk0QkYtWVVEQkctRUFSNjktQlBSR0ItQVRRWEgK
