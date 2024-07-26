@@ -4,7 +4,7 @@ pkgbase=wps-office-365
 pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
 pkgver=12.8.2.17001
 _xiezuo='4.25.0'
-pkgrel=1
+pkgrel=2
 pkgdesc="WPS Office, is an office productivity suite."
 arch=('x86_64' 'aarch64')
 url="https://365.wps.cn/"
@@ -64,6 +64,12 @@ python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/"
     usr/share/templates/wps-office-et-template.desktop
   sed -i 's|URL=.*|URL=/opt/kingsoft/wps-office/office6/mui/zh_CN/templates/newfile.pptx|' \
     usr/share/templates/wps-office-wpp-template.desktop
+
+  # fix background process
+  sed -i '2i [[ $(ps -ef | grep -c "office6/$(basename $0)") == 1 ]] && gOptExt=-multiply' usr/bin/{wps,wpp,et,wpspdf}
+
+  # fix input method
+  sed -i '2i [[ "$XMODIFIERS" == "@im=fcitx" ]] && export QT_IM_MODULE=fcitx' usr/bin/{wps,wpp,et,wpspdf}
 
   # fix xxx Njk0QkYtWVVEQkctRUFSNjktQlBSR0ItQVRRWEgK
   sed -i 's|YUA..=NsbhfV4nLv_oZGENyLSVZA..|YUA..=WHfH10HHgeQrW2N48LfXrA..|' \
