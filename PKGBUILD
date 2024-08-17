@@ -51,9 +51,6 @@ package_wps-office-365(){
   rm opt/kingsoft/wps-office/office6/lib{jpeg,stdc++}.so*
   [[ "$CARCH" = "aarch64" ]] && rm opt/kingsoft/wps-office/office6/addons/cef/libm.so*
 
-  # fix libtiff.so.5 deps
-  ln -s /usr/lib/libtiff.so.6 opt/kingsoft/wps-office/office6/libtiff.so.5
-
   # fix python2 call
   sed -i "s/python -c 'import sys, urllib; print urllib\.unquote(sys\.argv\[1\])'/\
 python -c 'import sys, urllib.parse; print(urllib.parse.unquote(sys.argv[1]))'/" usr/bin/wps
