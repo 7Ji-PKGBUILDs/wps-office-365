@@ -1,7 +1,7 @@
 pkgbase = wps-office-365
 	pkgdesc = WPS Office, is an office productivity suite.
-	pkgver = 12.8.2.17001
-	pkgrel = 2
+	pkgver = 12.8.2.17836
+	pkgrel = 1
 	url = https://365.wps.cn/
 	arch = x86_64
 	arch = aarch64
@@ -25,10 +25,10 @@ pkgbase = wps-office-365
 	options = !strip
 	options = !zipman
 	options = !debug
-	source_x86_64 = https://ks3.wpsplus.wpscdn.cn/img/wps-office_12.8.2.17001.AK.preload.sw._integration_xiezuo4.25.0_amd64.deb
-	sha256sums_x86_64 = 071100a6603c38f8a36970b85afa8b22d963d3a47617a365c1c34a7f9ec44e27
-	source_aarch64 = https://ks3.wpsplus.wpscdn.cn/img/wps-office_12.8.2.17001.AK.preload.sw._integration_xiezuo4.25.0_arm64.deb
-	sha256sums_aarch64 = df5b87ad07b9c965a83047fdd6599a95b77493f6b999c1b0d71bc2fea8fa4b01
+	source_x86_64 = https://ks3.wpsplus.wpscdn.cn/img/wps-office_12.8.2.17836.AK.preload.sw_amd64.deb
+	sha256sums_x86_64 = a21f2c0cf9fa5b5cf8a358523847d4554c848d66546ad5d8686d8a9c3e404572
+	source_aarch64 = https://ks3.wpsplus.wpscdn.cn/img/wps-office_12.8.2.17836.AK.preload.sw_arm64.deb
+	sha256sums_aarch64 = d2c42dba5b7c94949ee4fc14202784cddd71927d8ae270694f6b106299c8be35
 
 pkgname = wps-office-365
 	provides = wps-office
