@@ -5,7 +5,7 @@ pkgname=('wps-office-365' 'wps-office-365-xiezuo' 'wps-office-365-fonts')
 pkgver=12.8.2.17836
 pkgrel=1
 pkgdesc="WPS Office, is an office productivity suite."
-arch=('x86_64' 'aarch64')
+arch=('x86_64' 'aarch64' 'loong64')
 url="https://365.wps.cn/"
 license=('LicenseRef-WPS-EULA')
 makedepends=(
@@ -20,8 +20,10 @@ optdepends=(
 options=(!strip !zipman !debug)
 source_x86_64=("https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_amd64.deb")
 source_aarch64=("https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_arm64.deb")
+source_loong64=("https://ks3.wpsplus.wpscdn.cn/img/wps-office_${pkgver}.AK.preload.sw_loongarch64.deb")
 sha256sums_x86_64=('a21f2c0cf9fa5b5cf8a358523847d4554c848d66546ad5d8686d8a9c3e404572')
 sha256sums_aarch64=('d2c42dba5b7c94949ee4fc14202784cddd71927d8ae270694f6b106299c8be35')
+sha256sums_loong64=('8053922bf4d51938703bc5079580a322235ca8cc0390762f917f0e9682661e0e')
 
 prepare() {
   xz -df data.tar.xz
