@@ -49,7 +49,11 @@ package_wps-office-365(){
 
   # use system lib
   rm opt/kingsoft/wps-office/office6/lib{jpeg,stdc++}.so*
-  [[ "$CARCH" = "aarch64" ]] && rm opt/kingsoft/wps-office/office6/addons/cef/libm.so*
+  if [[ "$CARCH" = "aarch64" ]]; then
+    # more stuffs are broken on ALARM, force these to use system library
+    rm opt/kingsoft/wps-office/office6/addons/cef/libm.so*
+    rm opt/kingsoft/wps-office/office6/libfreetype.so*
+  fi
 
   # fix python2 call
   sed -i "s/python -c 'import sys, urllib; print urllib\.unquote(sys\.argv\[1\])'/\
